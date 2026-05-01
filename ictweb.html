@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Breaking Buns</title>
@@ -79,7 +80,7 @@
       border: 1px solid #333;
       transition: 0.3s;
       display: inline-block;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 1px rgba(0,0,0,0.3);
     }
 
     .navbar a:hover {
@@ -131,7 +132,35 @@
   font-size: 0.9em;
   color: #F7EDD4;
   margin-top: 30px; /* Adds space after your Mission section before the footer starts */
+  footer .social-links {
+  margin-bottom: 20px;}
 }
+
+footer .social-links p {
+  font-family: Georgia, serif;
+  color: #F7EDD4;
+}
+
+footer .social-links a {
+  color: #F6B102; /* Match your navbar yellow */
+  text-decoration: none;
+  margin: 0 10px;
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+footer .social-links a:hover {
+  color: white;
+  text-shadow: 0 0 10px #F6B102;
+}
+
+/* This styles the actual icons */
+footer i {
+  font-size: 1.2rem;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
 
 
   </style>
@@ -169,6 +198,13 @@
 </main>
 
 <footer>
+  <div class="social-links">
+    <p>Follow us on our: 
+      <a href="#"><i class="fab fa-instagram"></i> Instagram</a>, 
+      <a href="#"><i class="fab fa-facebook"></i> Facebook</a>, 
+      <a href="#"><i class="fab fa-x-twitter"></i> X</a>
+    </p>
+  </div>
   <p>&copy; 2026 Breaking Buns. All rights reserved.</p>
 </footer>
 
