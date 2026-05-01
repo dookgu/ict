@@ -103,7 +103,17 @@
   font-family: Copperplate, serif; 
   text-transform: uppercase; /* Makes it all caps like your image */
   letter-spacing: 2px;    /* Adds a little space between letters for a cleaner look */
+  /* This adds space ONLY if there is content above the heading */
+  margin-bottom: 30px;
+    }
+
+/* This keeps the very first heading closer to your buttons */
+section:first-of-type h2 {
+  margin-top: 20px;
 }
+
+
+
 
     footer {
       padding: 40px;
@@ -147,12 +157,12 @@
     </section>
 
     <section>
-      <h2>VISION</h2>
+      <h2 style="margin-top: 1px; font-size: 30px">VISION</h2>
       <p>To become a well-loved burger brand known for serving delicious, high-quality, and affordable burgers that bring people together and create enjoyable dining experiences in every community.</p>
     </section>
 
     <section>
-      <h2>MISSION</h2>
+      <h2 style="margin-top: 1px; font-size: 30px" >MISSION</h2>
       <p>At Breaking Buns, our mission is to provide freshly prepared burgers made with quality ingredients and great flavor. We aim to deliver excellent service, maintain high standards of food quality, and create a welcoming place where customers can enjoy satisfying meals with friends and family.</p>
       <p>We are committed to making every bite memorable while keeping our food accessible and affordable for everyone.</p>
     </section>
