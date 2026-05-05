@@ -7,7 +7,56 @@
   <title>Products - Breaking Buns</title>
 
   <style>
+     @keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px); /* Starts slightly lower */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);    /* Ends at original position */
+  }
+}
+
+.product-info-box {
+       border: 2px solid #F6B102; /* The mustard-yellow border */
+       border-radius: 15px;      /* Rounded corners for the text box */
+       padding: 15px;            /* Space between text and border */
+       margin-top: 15px;         /* Space between image and text box */
+       background-color: rgba(0, 0, 0, 0.2); /* Subtle dark tint to make text pop */
+    }
+
+    .product-item h3 {
+       color: #F6B102;
+       font-family: "Arial Black", sans-serif;
+       margin: 0 0 5px 0;        /* Tighten spacing between title and p */
+       font-size: 1.2rem;
+    }
+
+    .product-item p {
+       color: #F7EDD4;
+       font-family: Georgia, serif;
+       font-size: 0.9rem;
+       margin: 0;
+    }
+
+.section-title-box {
+        display: inline-block;    /* Makes the box fit the text size */
+        background-color:  #F6B102; /* Dark green background */
+        color: #093426;           /* Mustard yellow text */
+        font-family: 'Arial Black', Gadget, sans-serif;
+        font-size: 32px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        padding: 15px 60px;       /* Gives it that wide button shape */
+        border-radius: 70px;      /* Rounds the corners perfectly */
+        border: 2px solid #333;   /* Dark border like the navbar */
+        box-shadow: 0 6px 0px rgba(0,0,0,0.4); /* The "clicky" bottom shadow */
+        margin-bottom: 50px;      /* Space before the burgers start */
+    }
+
     body {
+      animation: fadeInUp 0.50s ease-out;
       margin: 0;
       padding: 0;
       background-color: #093426;
@@ -37,6 +86,8 @@
     }
 
     .navbar {
+      animation: fadeInUp 1s ease-out both;
+      animation-delay: 0.2s; 
       background-color: #F6B102;
       max-width: 750px;
       margin: -110px auto 0 auto;
@@ -88,11 +139,49 @@
 
     .product-grid {
        display: flex;
-       flex-wrap: wrap;
+       flex-wrap: wrap; /* Allows burgers to move to the next row */
        justify-content: center;
        gap: 30px;
        max-width: 1200px;
        margin: 0 auto;
+       padding: 40px 20px;
+    }
+
+    .product-item {
+       background-color: rgba(9, 52, 38, 0.95); /* Matches your brand green */
+       border: 2px solid #F6B102; /* Brand yellow border */
+       border-radius: 20px;
+       padding: 20px;
+       width: 280px; /* Fixed width makes them sit horizontally */
+       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+       transition: transform 0.3s ease;
+       text-align: center;
+    }
+
+    .product-item:hover {
+       transform: translateY(-10px); /* Subtle lift effect */
+       border-color: white;
+    }
+
+    .product-item img {
+       width: 100%;
+       aspect-ratio: 1/1; /* Keeps your square images perfect */
+       object-fit: cover;
+       border-radius: 15px;
+       margin-bottom: 15px;
+    }
+
+    .product-item h3 {
+       color: #F6B102;
+       font-family: "Arial Black", sans-serif;
+       margin: 10px 0;
+    }
+
+    .product-item p {
+       color: #F7EDD4;
+       font-family: Georgia, serif;
+       font-size: 14px;
+       line-height: 1.4;
     }
 
     footer {
@@ -153,15 +242,65 @@ footer i {
     </ul>
   </nav>
 </header>
-
-<main class="main-content">
-  <h2 style="color: #F6B102; font-family: Arial Black; font-size: 40px;">OUR PRODUCTS</h2>
+ 
+  <main class="main-content">
+  <h2 class="section-title-box">OUR PRODUCTS</h2>
   
-  <!-- This is where your menu items will go -->
   <div class="product-grid">
-    <!-- Example Product Holder -->
-    <p style="color: white;">Product listings coming soon...</p>
+    <!-- Item 1 -->
+    <div class="product-item">
+      <img src="burger1.png" alt="Classic Burger">
+      <div class="product-info-box">
+      <h3>Classic Burger</h3>
+      <p>A timeless favorite with lettuce, tomato, and our special sauce.</p>
+       </div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="product-item">
+      <img src="burger2.png" alt="Cheese Burger">
+      <div class="product-info-box">
+      <h3>Cheese Lover's</h3>
+      <p>Loaded with cheddar, Swiss, and mozzarella cheeses.</p>
+       </div>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="product-item">
+      <img src="burger3.png" alt="Spicy Burger">
+      <div class="product-info-box">
+      <h3>Spicy Jalapeño</h3>
+      <p>Packed with jalapeños and spicy mayo for a fiery kick.</p>
+       </div>
+    </div>
+
+    <!-- Item 4 -->
+    <div class="product-item">
+      <img src="burger4.png" alt="Double Burger">
+      <div class="product-info-box">
+      <h3>Double Stack</h3>
+      <p>Two premium beef patties for the ultimate hunger.</p>
+       </div>
+    </div>
+
+    <!-- Item 5 -->
+    <div class="product-item">
+      <img src="burger5.png" alt="Bacon Burger">
+      <div class="product-info-box">
+      <h3>Bacon Bliss</h3>
+      <p>Crispy bacon strips paired with melted smoky cheese.</p>
+       </div>
+    </div>
+
+    <!-- Item 6 -->
+    <div class="product-item">
+      <img src="burger6.png" alt="Special Burger">
+      <div class="product-info-box">
+      <h3>The "Heisenberg"</h3>
+      <p>Our signature secret recipe. Say our name.</p>
+    </div>
   </div>
+
 </main>
 
 <footer>
