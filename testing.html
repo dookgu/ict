@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products - Breaking Buns</title>
+
+  <style>
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    body {
+      animation: fadeInUp 0.50s ease-out;
+      margin: 0;
+      padding: 0;
+      background-color: #093426;
+      background-image: url('bgside.png');
+      background-attachment: fixed;
+      background-position: center top;
+      background-size: cover;
+    }
+
+    /* --- HEADER & CART ICON --- */
+    header {
+      background-image: url('burgerbackground.jpg'); 
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding-top: 60px;
+      padding-bottom: 80px; 
+      text-align: center;
+      position: relative; /* Needed to position the cart badge */
+      box-shadow: inset 0 -140px 150px -80px #093426, inset 0 -40px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    /* NEW: Cart Icon in Top Right (Referencing image_0f22a2.png) */
+    .cart-container {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      cursor: pointer;
+      color: #F6B102;
+      font-size: 2.5rem;
+      transition: 0.3s;
+    }
+
+    .cart-container:hover { transform: scale(1.1); color: white; }
+
+    .cart-badge {
+      position: absolute;
+      top: -5px;
+      right: -10px;
+      background-color: #e21c21;
+      color: white;
+      font-family: 'Arial Black', sans-serif;
+      font-size: 0.9rem;
+      padding: 2px 8px;
+      border-radius: 50%;
+      border: 2px solid #093426;
+      display: none; /* Hidden until items are added */
+    }
+
+    .logo-img { max-width: 100%; height: auto; }
+
+    .navbar {
+      animation: fadeInUp 1s ease-out both;
+      animation-delay: 0.2s; 
+      background-color: #F6B102;
+      max-width: 750px;
+      margin: -110px auto 0 auto;
+      border: 2px solid #333;
+      padding: 13px;
+      border-radius: 50px;
+      position: relative; 
+      z-index: 10;
+    }
+
+    .navbar ul {
+      list-style-type: none;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 30px;
+    }
+
+    .navbar a {
+      font-family: Copperplate, serif;
+      font-size: 16px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      background-color: #093426;
+      border-radius: 70px;
+      padding: 8px 50px;
+      border: 1px solid #333;
+      transition: 0.3s;
+      display: inline-block;
+      box-shadow: 0 4px 1px rgba(0,0,0,0.3);
+    }
+
+    /* --- PRODUCT GRID & ITEMS --- */
+    .main-content {
+      max-width: 100%;
+      margin: 0;
+      background-color: rgba(9, 52, 38, 0.85);
+      text-align: center;
+      padding: 60px 20px;
+      min-height: 600px;
+    }
+
+    .section-title-box {
+      display: inline-block;
+      background-color: #F6B102;
+      color: #093426;
+      font-family: 'Arial Black', sans-serif;
+      font-size: 32px;
+      text-transform: uppercase;
+      padding: 15px 60px;
+      border-radius: 70px;
+      border: 2px solid #333;
+      box-shadow: 0 6px 0px rgba(0,0,0,0.4);
+      margin-bottom: 50px;
+    }
+
+    .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .product-item {
+      background-color: rgba(9, 52, 38, 0.95);
+      border: 2px solid #F6B102;
+      border-radius: 20px;
+      padding: 20px;
+      width: 280px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* --- INFO BOX & QUANTITY (Referencing image_0f2261.png) --- */
+    .product-info-box {
+      border: 2px solid #093426;
+      border-radius: 15px;
+      padding: 15px;
+      margin-top: 15px;
+      background-color: #F6B102;
+    }
+
+    .quantity-selector {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #093426;
+      border: 2px solid #F6B102;
+      border-radius: 50px;
+      margin-top: 15px;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .qty-btn {
+      background: none;
+      border: none;
+      color: #F6B102;
+      font-size: 20px;
+      padding: 10px 20px;
+      cursor: pointer;
+      width: 33%;
+    }
+
+    .qty-number { color: white; font-family: "Arial Black", sans-serif; width: 33%; }
+
+    /* NEW: Complete Order Button */
+    .order-btn {
+      background-color: #F6B102;
+      color: #093426;
+      font-family: "Arial Black", sans-serif;
+      text-transform: uppercase;
+      border: 2px solid #333;
+      border-radius: 50px;
+      padding: 12px;
+      margin-top: 15px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: 0.3s;
+      box-shadow: 0 4px 0px rgba(0,0,0,0.3);
+    }
+
+    .order-btn:hover { background-color: white; transform: translateY(-3px); }
+    .order-btn:active { transform: translateY(2px); box-shadow: none; }
+
+    footer {
+      background: #093426;
+      padding: 40px 20px;
+      text-align: center;
+      color: #F7EDD4;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <!-- Shopping Cart Icon (Referencing image_a4f89d.png) -->
+  <div class="cart-container" title="View Cart">
+    <i class="fa-solid fa-cart-shopping"></i>
+    <span class="cart-badge" id="cartBadge">0</span>
+  </div>
+
+  <img src="breaking bad1.png" class="logo-img" alt="Breaking Buns Logo" width="500">
+  <nav class="navbar">
+    <ul>
+      <li><a href="ictweb.html">Home</a></li>
+      <li><a href="#">Promos</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="contact.html">Contacts</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="main-content">
+  <h2 class="section-title-box">OUR PRODUCTS</h2>
+  
+  <div class="product-grid">
+    <!-- Example Item 1 -->
+    <div class="product-item">
+      <img src="burger1.png" alt="Classic Burger" style="width:100%; border-radius:15px;">
+      <div class="product-info-box">
+        <h3 style="font-family:'Arial Black'; margin:0;">The Crystal Classic</h3>
+        <p style="font-family:Georgia; font-size:0.85rem;">Double smashed patties and melted cheddar.</p>
+        <span style="font-family:'Arial Black'; font-size:1.2rem;">₱ 290.00</span> 
+      </div>    
+      
+      <!-- Quantity Selector (Referencing image_0f2261.png) -->
+      <div class="quantity-selector">
+        <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+        <div class="qty-number">1</div>
+        <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+      </div>
+
+      <!-- NEW: Complete Order Button -->
+      <button class="order-btn" onclick="completeOrder(this)">Complete Order</button>
+    </div>
+
+    <!-- Example Item 2 -->
+    <div class="product-item">
+      <img src="burger2.png" alt="Batch One" style="width:100%; border-radius:15px;">
+      <div class="product-info-box">
+        <h3 style="font-family:'Arial Black'; margin:0;">The Batch One</h3>
+        <p style="font-family:Georgia; font-size:0.85rem;">Thick-cut beef with liquid cheddar.</p>
+        <span style="font-family:'Arial Black'; font-size:1.2rem;">₱ 245.00</span> 
+      </div>    
+      
+      <div class="quantity-selector">
+        <button class="qty-btn" onclick="changeQty(this, -1)">-</button>
+        <div class="qty-number">1</div>
+        <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+      </div>
+
+      <button class="order-btn" onclick="completeOrder(this)">Complete Order</button>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2026 Breaking Buns. All rights reserved.</p>
+</footer>
+
+<script>
+  let totalInCart = 0;
+
+  function changeQty(button, change) {
+    const qtyDisplay = button.parentElement.querySelector('.qty-number');
+    let currentQty = parseInt(qtyDisplay.innerText);
+    let newQty = currentQty + change;
+    if (newQty < 1) newQty = 1;
+    qtyDisplay.innerText = newQty;
+  }
+
+  function completeOrder(button) {
+    const productItem = button.closest('.product-item');
+    const qtyValue = parseInt(productItem.querySelector('.qty-number').innerText);
+    const badge = document.getElementById('cartBadge');
+
+    // Update global total
+    totalInCart += qtyValue;
+
+    // Update badge display
+    badge.innerText = totalInCart;
+    badge.style.display = 'block';
+
+    // Small animation effect
+    badge.style.transform = 'scale(1.4)';
+    setTimeout(() => { badge.style.transform = 'scale(1)'; }, 200);
+
+    // Optional: Reset quantity to 1 after ordering
+    productItem.querySelector('.qty-number').innerText = "1";
+    
+    alert(`Added ${qtyValue} item(s) to your order!`);
+  }
+</script>
+
+</body>
+</html>
